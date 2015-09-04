@@ -1,6 +1,9 @@
 <?php
 
 /*
+@author Iain Mullan (@iainmullan)
+@date 14/05/2014
+
 Updated swap.php to add refresh token and changes Spotify have made with their api location etc.
 In iOS app update your kTokenSwapServiceURL and kTokenRefreshServiceURL to call this script.
 */
