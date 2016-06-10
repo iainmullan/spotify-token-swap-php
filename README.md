@@ -1,21 +1,25 @@
-# Spotify token-swap service for PHP
+# PHP Spotify token-swap service for iOS
 
-(Based on [Paul Lamere's python script](https://github.com/plamere/spotify_token_swap))
+This is an example token swap and token refresh service written in PHP for use with the Spotify iOS SDK to authenticate a user.
 
-This is an example token swap service written in PHP. This is required by
-the Spotify iOS SDK to authenticate a user.
-To run the service, enter your client ID, client
-secret and client callback URL below and place the file on a web server.
-Pass the full URL of this script (eg. `http://localhost/swap.php`) to the
-token swap method in the iOS SDK:
-	
-	NSURL *swapServiceURL = [NSURL urlWithString:@"http://localhost/swap.php"];
-	-[SPAuth handleAuthCallbackWithTriggeredAuthURL:url
-	               tokenSwapServiceEndpointAtURL:swapServiceURL
-	                                    callback:callback];
+- You will need to replace the details with your own client ID, client secret and client callback URL:
+```PHP
+//swap.php
+define('k_client_id', "spotify-ios-sdk-beta");
+define('k_client_secret', "ba95c775e4b39b8d60b27bcfced57ba473c10046");
+define('k_client_callback_url', "spotify-ios-sdk-beta://callback");
+```
 
-Note: For the beta 1 release of the iOS SDK Spotify provides the
-below beta values you can use in your Token Exchange Service code; later,
-these values will be invalidated and will need to be replaced by your
-own unique values.
+- Next, upload this php file to your web server.
 
+- You can then update your iOS project by changing kTokenSwapServiceURL and kTokenRefreshServiceURL to call this php script:
+```Swift
+//Swift - config.h in sample project (see below)
+#define kTokenSwapServiceURL "http://www.domain.com/swap.php"
+#define kTokenRefreshServiceURL "http://www.domain.com/swap.php"
+```
+
+
+(You can get the latest Spotify SDK and sample project [here](https://github.com/spotify/ios-sdk).)
+
+(Updated to include the token refresh swap and the latest changes from Spotify.)
